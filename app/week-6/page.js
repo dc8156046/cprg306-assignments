@@ -5,6 +5,7 @@ import itemsJson from "./items.json";
 
 export default function Page() {
   const [items, setItems] = useState(itemsJson);
+  const [activeButton, setActiveButton] = useState("");
 
   const handleClick = (sortAttr) => {
     const sortedItems = [...items].sort((a, b) => {
@@ -12,6 +13,13 @@ export default function Page() {
     });
 
     setItems(sortedItems);
+    setActiveButton(sortAttr); // Set active button
+  };
+
+  const getButtonClass = (sortAttr) => {
+    return activeButton === sortAttr
+      ? "bg-orange-500 p-1 m-2 w-28" // Active style
+      : "bg-orange-700 p-1 m-2 w-28"; // Inactive style
   };
 
   const handleGroupClick = () => {
@@ -24,13 +32,13 @@ export default function Page() {
         <div>
           <label for="sort">Sort by: </label>
           <button
-            className="bg-orange-500 p-1 m-2 w-28"
+            className={getButtonClass("name")}
             onClick={() => handleClick("name")}
           >
             Name
           </button>
           <button
-            className="bg-orange-700 p-1 m-2 w-28"
+            className={getButtonClass("category")}
             onClick={() => handleClick("category")}
           >
             Category
