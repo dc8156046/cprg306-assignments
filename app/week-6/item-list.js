@@ -1,9 +1,9 @@
 import Item from "./item";
 
-export default function ItemList({ itemsJson }) {
+export default function ItemList({ items }) {
   return (
     <ul>
-      {itemsJson.map((item) => (
+      {items.map((item) => (
         <Item
           id={item.id}
           name={item.name}

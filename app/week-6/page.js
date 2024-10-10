@@ -68,7 +68,7 @@ export default function Page() {
         {groupedItems ? (
           <GroupedItemList groupedItems={groupedItems} />
         ) : (
-          <ItemList itemsJson={items} />
+          <ItemList items={items} />
         )}
       </div>
     </main>
