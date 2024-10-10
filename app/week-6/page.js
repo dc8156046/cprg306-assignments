@@ -2,10 +2,12 @@
 import { useState } from "react";
 import ItemList from "./item-list";
 import itemsJson from "./items.json";
+import GroupedItemList from "./group-item-list";
 
 export default function Page() {
   const [items, setItems] = useState(itemsJson);
   const [activeButton, setActiveButton] = useState("");
+  const [groupedItems, setGroupedItems] = useState(null);
 
   const handleClick = (sortAttr) => {
     const sortedItems = [...items].sort((a, b) => {
@@ -13,7 +15,8 @@ export default function Page() {
     });
 
     setItems(sortedItems);
-    setActiveButton(sortAttr); // Set active button
+    setActiveButton(sortAttr);
+    setGroupedItems(null);
   };
 
   const getButtonClass = (sortAttr) => {
@@ -23,7 +26,19 @@ export default function Page() {
   };
 
   const handleGroupClick = () => {
-    console.log("Grouped Category");
+    const groupedItems = items.reduce((acc, item) => {
+      // If the category doesn't exist in the accumulator, initialize it with an empty array
+      if (!acc[item.category]) {
+        acc[item.category] = [];
+      }
+
+      acc[item.category].push(item);
+
+      return acc;
+    }, {});
+
+    setGroupedItems(groupedItems);
+    setActiveButton("group");
   };
   return (
     <main className="bg-slate-100">
@@ -44,13 +59,17 @@ export default function Page() {
             Category
           </button>
           <button
-            className="bg-orange-700 p-1 m-2 w-28"
+            className={getButtonClass("group")}
             onClick={() => handleGroupClick()}
           >
             Grouped Category
           </button>
         </div>
-        <ItemList itemsJson={items} />
+        {groupedItems ? (
+          <GroupedItemList groupedItems={groupedItems} />
+        ) : (
+          <ItemList itemsJson={items} />
+        )}
       </div>
     </main>
   );
