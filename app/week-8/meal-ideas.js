@@ -29,10 +29,6 @@ export default function MealIdeas({ itemName }) {
     }
   };
 
-  const loadMealIdeas = (ingredient) => {
-    fetchMealIdeas(ingredient);
-  };
-
   useEffect(() => {
     if (itemName) {
       setIngredient(itemName);
