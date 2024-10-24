@@ -50,9 +50,11 @@ export default function MealIdeas({ itemName }) {
       <h3 class="text-xl font-bold">Meal Ideas</h3>
       <div>
         <p>
-          {meals.length > 0
-            ? `Here are some meal ideas using ${removeEmojis(ingredient)}:`
-            : `No meal ideas found for ${removeEmojis(ingredient)}`}
+          {itemName.length > 0
+            ? meals.length > 0
+              ? `Here are some meal ideas using ${removeEmojis(ingredient)}:`
+              : `No meal ideas found for ${removeEmojis(ingredient)}`
+            : "Select an item to see meal ideas"}
         </p>
         <ul>
           {meals.map((meal) => (

@@ -55,11 +55,10 @@ export default function Page() {
         </div>
         <ItemList items={items} onItemSelect={handleItemSelect} />
       </div>
-      {selectedItemName.length > 0 ? (
-        <div className="flex-1 max-w-sm m-2">
-          <MealIdeas itemName={selectedItemName} />
-        </div>
-      ) : null}
+
+      <div className="flex-1 max-w-sm m-2">
+        <MealIdeas itemName={selectedItemName} />
+      </div>
     </div>
   );
 }
