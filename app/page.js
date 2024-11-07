@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export default function Page() {
-  const assignments = [2, 3, 4, 5, 6, 7, 8, 9];
+  const assignments = [2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between text-sm">
